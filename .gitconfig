@@ -1,0 +1,19 @@
+[color]
+	ui = true
+[user]
+	name = Paul Pavlovsky
+	email = fatpaher@gmail.com
+[alias]
+	ch = checkout
+ 	ci = commit
+  	st = status
+ 	br = branch
+	hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+ 	 type = cat-file -t
+ 	 dump = cat-file -p
+[core]
+	editor = mcedit
+	autocrlf = false
+	safecrlf = true
+[push]
+	default = simple
