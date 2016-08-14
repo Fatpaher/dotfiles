@@ -26,6 +26,7 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
 Plugin 'tpope/vim-fugitive'
 Plugin 'airblade/vim-gitgutter'
+Plugin 'Townk/vim-autoclose'
 
 call vundle#end()
 filetype plugin indent on
