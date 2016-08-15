@@ -15,5 +15,6 @@
 	editor = mcedit
 	autocrlf = false
 	safecrlf = true
+	excludesfile = ~/.gitignore
 [push]
 	default = simple
