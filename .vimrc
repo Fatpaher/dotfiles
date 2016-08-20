@@ -31,6 +31,14 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'tpope/vim-vinegar'
 Plugin 'kana/vim-textobj-user'
 Plugin 'nelstrom/vim-textobj-rubyblock'
+Plugin 'vim-scripts/vim-auto-save'
+
+" html tags highliting"
+Plugin 'gregsexton/MatchTag'
+
+" JavaScript and JSX highlining
+Plugin 'pangloss/vim-javascript'
+Plugin 'mxw/vim-jsx'
 
 " Colorschemes
 Plugin 'flazz/vim-colorschemes'
@@ -97,10 +105,29 @@ let g:syntastic_check_on_wq = 0
 "Remove all trailing whitespace by pressing F5
 nnoremap <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
 
+" Make :help appear in a full-screen tab, instead of a window
+augroup HelpInTabs
+  autocmd!
+  autocmd BufEnter  *.txt   call HelpInNewTab()
+augroup END
+
+function! HelpInNewTab ()
+  if &buftype == 'help'
+    execute "normal \<C-W>T"
+  endif
+endfunction
+
+" Allow deletes in Insert mode to keep deleting past the insertion point
+set backspace=indent,eol,start
+
+" Autoave options
+let g:auto_save = 1  " enable AutoSave on Vim startup "
+let g:auto_save_in_insert_mode = 0  " do not save while in insert mode "
+
 ">>>>Thoughbot
 
 " Leader
-let mapleader = " "
+" let mapleader = " "
 
 set backspace=2   " Backspace deletes like most programs in insert mode
 set nobackup
