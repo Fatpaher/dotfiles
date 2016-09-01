@@ -12,7 +12,7 @@
  	 type = cat-file -t
  	 dump = cat-file -p
 [core]
-	editor = mcedit
+	editor = vim
 	autocrlf = false
 	safecrlf = true
 	excludesfile = ~/.gitignore
