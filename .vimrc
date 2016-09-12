@@ -45,6 +45,9 @@ Plugin 'flazz/vim-colorschemes'
 Plugin 'gosukiwi/vim-atom-dark'
 Plugin 'snowcrshd/cyberpunk.vim'
 
+" Coments
+Plugin 'tpope/vim-commentary'
+
 call vundle#end()
 filetype plugin indent on
 filetype plugin on
@@ -101,8 +104,8 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
-" set location-list window height to 3 lines
-let g:syntastic_loc_list_height=5
+" set location-list window height to  lines
+let g:syntastic_loc_list_height=2
 
 "Remove all trailing whitespace by pressing F5
 nnoremap <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
@@ -125,6 +128,7 @@ set backspace=indent,eol,start
 " Autoave options
 let g:auto_save = 1  " enable AutoSave on Vim startup "
 let g:auto_save_in_insert_mode = 0  " do not save while in insert mode "
+let g:auto_save_silent = 1  " do not display the auto-save notification "
 
 ">>>>Thoughbot
 
