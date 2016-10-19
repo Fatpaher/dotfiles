@@ -145,7 +145,6 @@ nnoremap gc :Gcommit<CR>
 nnoremap gb :Gblame<CR>
 nnoremap ge :Gbrowse<CR>
 nnoremap gw :Gwrite<CR>
-nnoremap gr :Gread<CR>
 
 ">>>>Thoughbot
 
