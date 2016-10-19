@@ -1,6 +1,5 @@
 syntax on
 
-set number
 set hlsearch
 set laststatus=2
 set nocompatible
@@ -130,10 +129,28 @@ let g:auto_save = 1  " enable AutoSave on Vim startup "
 let g:auto_save_in_insert_mode = 0  " do not save while in insert mode "
 let g:auto_save_silent = 1  " do not display the auto-save notification "
 
+" Tabs navigation shotcuts
+nnoremap th  :tabfirst<CR>
+nnoremap tj  :tabnext<CR>
+nnoremap tk  :tabprev<CR>
+nnoremap tl  :tablast<CR>
+nnoremap tt  :tabedit<Space>
+nnoremap tn  :tabnew<Space>
+nnoremap tm  :tabm<Space>
+nnoremap td  :tabclose<CR>
+
+" fugitive.vim hotkeys
+nnoremap gs :Gstatus<CR>
+nnoremap gc :Gcommit<CR>
+nnoremap gb :Gblame<CR>
+nnoremap ge :Gbrowse<CR>
+nnoremap gw :Gwrite<CR>
+nnoremap gr :Gread<CR>
+
 ">>>>Thoughbot
 
 " Leader
-" let mapleader = " "
+let mapleader = " "
 
 set backspace=2   " Backspace deletes like most programs in insert mode
 set nobackup
@@ -246,11 +263,10 @@ nnoremap <Up> :echoe "Use k"<CR>
 nnoremap <Down> :echoe "Use j"<CR>
 
 " vim-test mappings
-nnoremap <silent> <Leader>t :TestFile<CR>
-nnoremap <silent> <Leader>s :TestNearest<CR>
-nnoremap <silent> <Leader>l :TestLast<CR>
-nnoremap <silent> <Leader>a :TestSuite<CR>
-nnoremap <silent> <leader>gt :TestVisit<CR>
+map <Leader>t :call RunCurrentSpecFile()<CR>
+map <Leader>s :call RunNearestSpec()<CR>
+map <Leader>l :call RunLastSpec()<CR>
+map <Leader>a :call RunAllSpecs()<CR>
 
 " Run commands that require an interactive shell
 nnoremap <Leader>r :RunInInteractiveShell<space>
