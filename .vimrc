@@ -1,6 +1,7 @@
 syntax on
 
 set hlsearch
+set relativenumber
 set laststatus=2
 set nocompatible
 
