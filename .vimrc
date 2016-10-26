@@ -2,6 +2,7 @@ syntax on
 
 set hlsearch
 set relativenumber
+set number
 set laststatus=2
 set nocompatible
 
@@ -43,7 +44,7 @@ Plugin 'mxw/vim-jsx'
 " Colorschemes
 Plugin 'flazz/vim-colorschemes'
 Plugin 'gosukiwi/vim-atom-dark'
-Plugin 'snowcrshd/cyberpunk.vim'
+Plugin 'albertocg/contrastneed-theme'
 
 " Coments
 Plugin 'tpope/vim-commentary'
