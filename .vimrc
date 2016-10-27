@@ -1,64 +1,17 @@
 syntax on
 
-set hlsearch
 set relativenumber
 set number
 set laststatus=2
 set nocompatible
 
 set tags=./tags;
-
 " Display extra whitespace
 set list listchars=tab:»·,trail:·,nbsp:·
 
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'vim-airline/vim-airline'
-Plugin 'tpope/vim-rails'
-Plugin 'thoughtbot/vim-rspec'
-Plugin 'MarcWeber/vim-addon-mw-utils'
-Plugin 'tomtom/tlib_vim'
-Plugin 'garbas/vim-snipmate'
-Plugin 'honza/vim-snippets'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'scrooloose/nerdtree'
-Plugin 'scrooloose/syntastic'
-Plugin 'tpope/vim-fugitive'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'Townk/vim-autoclose'
-Plugin 'kien/ctrlp.vim'
-Plugin 'tpope/vim-vinegar'
-Plugin 'kana/vim-textobj-user'
-Plugin 'nelstrom/vim-textobj-rubyblock'
-Plugin 'vim-scripts/vim-auto-save'
-
-" html tags highliting"
-Plugin 'gregsexton/MatchTag'
-
-" JavaScript and JSX highlining
-Plugin 'pangloss/vim-javascript'
-Plugin 'mxw/vim-jsx'
-
-" Colorschemes
-Plugin 'flazz/vim-colorschemes'
-Plugin 'gosukiwi/vim-atom-dark'
-Plugin 'albertocg/contrastneed-theme'
-
-" Coments
-Plugin 'tpope/vim-commentary'
-
-call vundle#end()
-filetype plugin indent on
-filetype plugin on
-
-" Edit another file in the same directory as the current file
-" uses expression to extract path from current file's path
-map <Leader>e :e <C-R>=escape(expand("%:p:h"),' ') . '/'<CR>
-map <Leader>s :split <C-R>=escape(expand("%:p:h"), ' ') . '/'<CR>
-map <Leader>v :vnew <C-R>=escape(expand("%:p:h"), ' ') . '/'<CR>
-
+"source the plugin file
+so ~/dotfiles/plugins.vim
+"---------------------------------NERDTree Configuration-------------------------
 let g:NERDTreeIndicatorMapCustom = {
     \ "Modified"  : "✹",
     \ "Staged"    : "✚",
@@ -70,11 +23,6 @@ let g:NERDTreeIndicatorMapCustom = {
     \ "Clean"     : "✔︎",
     \ "Unknown"   : "?"
     \ }
-
-" Open a NERDTree automatically when vim starts up if no files were specified
-"autocmd StdinReadPre * let s:std_in=1
-"autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-
 " NERDTress File highlighting
 function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
    exec 'autocmd filetype nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guibg='. a:guibg .' guifg='. a:guifg
@@ -95,8 +43,9 @@ function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
   call NERDTreeHighlightFile('js', 'Red', 'none', '#ffa500', '#151515')
   call NERDTreeHighlightFile('php', 'Magenta', 'none', '#ff00ff', '#151515')
   call NERDTreeHighlightFile('rb', 'Red', 'none', '#ffa500', '#151515')
+"-------------------------------------------------------------------------------
 
-" Syntactic settings
+"-----------------------Syntactic settings--------------------------------------
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
@@ -107,9 +56,6 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 " set location-list window height to  lines
 let g:syntastic_loc_list_height=2
-
-"Remove all trailing whitespace by pressing F5
-nnoremap <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
 
 " Make :help appear in a full-screen tab, instead of a window
 augroup HelpInTabs
@@ -131,6 +77,17 @@ let g:auto_save = 1  " enable AutoSave on Vim startup "
 let g:auto_save_in_insert_mode = 0  " do not save while in insert mode "
 let g:auto_save_silent = 1  " do not display the auto-save notification "
 
+" Automatically source .vimrc file on save
+" autocmd BufWritePost .vimrc source %
+
+" set Leader to space
+let mapleader = " "
+
+" ---------------------------Search------------------------------------------
+set hlsearch
+set incsearch
+
+" ---------------------------Mappings------------------------------------------
 " Tabs navigation shotcuts
 nnoremap th  :tabfirst<CR>
 nnoremap tj  :tabnext<CR>
@@ -141,17 +98,38 @@ nnoremap tn  :tabnew<Space>
 nnoremap tm  :tabm<Space>
 nnoremap td  :tabclose<CR>
 
-" fugitive.vim hotkeys
+" fugitive.vim hotkeys -- work with git
 nnoremap gs :Gstatus<CR>
 nnoremap gc :Gcommit<CR>
 nnoremap gb :Gblame<CR>
 nnoremap ge :Gbrowse<CR>
 nnoremap gw :Gwrite<CR>
 
-">>>>Thoughbot
+" vim-test mappings
+map <Leader>t :call RunCurrentSpecFile()<CR>
+map <Leader>s :call RunNearestSpec()<CR>
+map <Leader>l :call RunLastSpec()<CR>
+map <Leader>a :call RunAllSpecs()<CR>
 
-" Leader
-let mapleader = " "
+" open .vimrc file
+nmap <Leader>ev :tabedit $MYVIMRC<CR>
+
+" disable search highlight
+nmap <Leader>/ :nohlsearch<CR>
+
+" Edit another file in the same directory as the current file
+" uses expression to extract path from current file's path
+map <Leader>fe :e <C-R>=escape(expand("%:p:h"),' ') . '/'<CR>
+map <Leader>fs :split <C-R>=escape(expand("%:p:h"), ' ') . '/'<CR>
+map <Leader>fv :vnew <C-R>=escape(expand("%:p:h"), ' ') . '/'<CR>
+
+"Remove all trailing whitespace by pressing F5
+nnoremap <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
+
+"-------------------------------Layout------------------------------------------
+
+
+"----------------------------Thoughbot-----------------------------------------
 
 set backspace=2   " Backspace deletes like most programs in insert mode
 set nobackup
@@ -208,9 +186,6 @@ set shiftwidth=2
 set shiftround
 set expandtab
 
-" Display extra whitespace
-set list listchars=tab:»·,trail:·,nbsp:·
-
 " Use one space, not two, after punctuation.
 set nojoinspaces
 
@@ -262,12 +237,6 @@ nnoremap <Left> :echoe "Use h"<CR>
 nnoremap <Right> :echoe "Use l"<CR>
 nnoremap <Up> :echoe "Use k"<CR>
 nnoremap <Down> :echoe "Use j"<CR>
-
-" vim-test mappings
-map <Leader>t :call RunCurrentSpecFile()<CR>
-map <Leader>s :call RunNearestSpec()<CR>
-map <Leader>l :call RunLastSpec()<CR>
-map <Leader>a :call RunAllSpecs()<CR>
 
 " Run commands that require an interactive shell
 nnoremap <Leader>r :RunInInteractiveShell<space>
