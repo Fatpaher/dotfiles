@@ -3,14 +3,18 @@ syntax on
 set relativenumber
 set number
 set laststatus=2
+
+"latest vim settings/options
 set nocompatible
 
 set tags=./tags;
+
 " Display extra whitespace
 set list listchars=tab:»·,trail:·,nbsp:·
 
 "source the plugin file
 so ~/dotfiles/plugins.vim
+
 "---------------------------------NERDTree Configuration-------------------------
 let g:NERDTreeIndicatorMapCustom = {
     \ "Modified"  : "✹",
@@ -125,6 +129,9 @@ map <Leader>fv :vnew <C-R>=escape(expand("%:p:h"), ' ') . '/'<CR>
 
 "Remove all trailing whitespace by pressing F5
 nnoremap <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
+
+"Toggle NERD Tree
+nmap <Leader>nt :NERDTreeToggle<CR>
 
 "-------------------------------Layout------------------------------------------
 
