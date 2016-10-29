@@ -15,6 +15,9 @@ set list listchars=tab:»·,trail:·,nbsp:·
 "source the plugin file
 so ~/dotfiles/plugins.vim
 
+set t_Co=256
+colorschem darcula
+
 "---------------------------------NERDTree Configuration-------------------------
 let g:NERDTreeIndicatorMapCustom = {
     \ "Modified"  : "✹",
@@ -133,6 +136,21 @@ nnoremap <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
 "Toggle NERD Tree
 nmap <Leader>nt :NERDTreeToggle<CR>
 
+
+"Rails shorcuts
+"vertical
+nmap <Leader>vr :vsp config/routes.rb<CR>
+nmap <Leader>vs :Vschema<CR>
+nmap <Leader>vc :Vcontroller
+nmap <Leader>vm :Vmodel
+nmap <Leader>vv :Vview
+nmap <Leader>vm :Vmigration<CR>
+"current window
+nmap <Leader>er :open config/routes.rb<CR>
+nmap <Leader>es :Eschema<CR>
+nmap <Leader>ec :Econtroller
+nmap <Leader>em :Emodel
+nmap <Leader>em :Emigration<CR>
 "-------------------------------Layout------------------------------------------
 
 
