@@ -17,6 +17,29 @@ so ~/dotfiles/plugins.vim
 
 set t_Co=256
 colorschem darcula
+"------------- Set up persistent undo (with all undo files in one directory)---
+if has('persistent_undo')
+  set undofile
+endif
+
+set undodir=$HOME/.VIM_UNDO_FILES
+set undolevels=5000
+
+"--------------------- Fold lines according to the file's syntax--------------
+set foldmethod=syntax
+
+" Make folds auto-open and auto-close when the cursor moves over them
+:set foldopen=all
+:set foldclose=all
+
+" -------------------Make it obvious where 80 characters is--------------------
+"set textwidth=80
+"set colorcolumn=+1
+
+" Highlight anything in the 81st column or later
+
+highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+match OverLength /\%81v.\+/
 
 "---------------------------------NERDTree Configuration-------------------------
 let g:NERDTreeIndicatorMapCustom = {
@@ -93,9 +116,11 @@ let mapleader = " "
 " ---------------------------Search------------------------------------------
 set hlsearch
 set incsearch
+set ignorecase
+set smartcase
 
 " ---------------------------Mappings------------------------------------------
-" Tabs navigation shotcuts
+" Tabs navigation shortcuts
 nnoremap th  :tabfirst<CR>
 nnoremap tj  :tabnext<CR>
 nnoremap tk  :tabprev<CR>
@@ -119,7 +144,12 @@ map <Leader>l :call RunLastSpec()<CR>
 map <Leader>a :call RunAllSpecs()<CR>
 
 " open .vimrc file
-nmap <Leader>ev :tabedit $MYVIMRC<CR>
+nmap <Leader>cv :tabedit $MYVIMRC<CR>
+" source .vimrc file
+nmap <Leader>cs :source ~/.vimrc<CR>
+
+"open ruby snippets
+nmap <Leader>sr :tabedit ~/.vim/bundle/vim-snippets/snippets/ruby.snippets<CR>
 
 " disable search highlight
 nmap <Leader>/ :nohlsearch<CR>
@@ -134,7 +164,7 @@ map <Leader>fv :vnew <C-R>=escape(expand("%:p:h"), ' ') . '/'<CR>
 nnoremap <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
 
 "Toggle NERD Tree
-nmap <Leader>nt :NERDTreeToggle<CR>
+nmap <Leader><Tab> :NERDTreeToggle<CR>
 
 
 "Rails shorcuts
@@ -144,15 +174,33 @@ nmap <Leader>vs :Vschema<CR>
 nmap <Leader>vc :Vcontroller
 nmap <Leader>vm :Vmodel
 nmap <Leader>vv :Vview
-nmap <Leader>vm :Vmigration<CR>
+nmap <Leader>vd :Vmigration<CR>
 "current window
 nmap <Leader>er :open config/routes.rb<CR>
 nmap <Leader>es :Eschema<CR>
 nmap <Leader>ec :Econtroller
+nmap <Leader>ev :Eview
 nmap <Leader>em :Emodel
-nmap <Leader>em :Emigration<CR>
-"-------------------------------Layout------------------------------------------
+nmap <Leader>ed :Emigration<CR>
 
+" Use arrow keys to navigate after a :vimgrep or :helpgrep
+nmap <Leader><RIGHT>         :cnext<CR>
+nmap <Leader><RIGHT><RIGHT>  :cnfile<CR><C-G>
+nmap <Leader><LEFT>          :cprev<CR>
+nmap <Leader><LEFT><LEFT>    :cpfile<CR><C-G>
+
+" inspect with rubocop
+nmap <Leader>rc  :!rubocop %<CR>
+" autofix with rubocop
+nmap <Leader>ra :!rubocop -a %<CR>
+
+" Tab navigation like Firefox---.
+nnoremap <tab>   :tabnext<CR>
+
+" set paste on/off
+nmap <Leader>cp :set paste<CR>
+nmap <Leader>cP :set nopaste<CR>
+"-------------------------------Layout------------------------------------------
 
 "----------------------------Thoughbot-----------------------------------------
 
@@ -231,10 +279,6 @@ if executable('ag')
   endif
 endif
 
-" Make it obvious where 80 characters is
-set textwidth=80
-set colorcolumn=+1
-
 " Numbers
 set number
 set numberwidth=5
@@ -242,7 +286,7 @@ set numberwidth=5
 " Tab completion
 " will insert tab at beginning of line,
 " will use completion if not at beginning
-"set wildmode=list:longest,list:full
+set wildmode=list:longest,list:full
 "function! InsertTabWrapper()
 "    let col = col('.') - 1
 "    if !col || getline('.')[col - 1] !~ '\k'
