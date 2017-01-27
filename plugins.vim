@@ -22,9 +22,14 @@ Plugin 'tpope/vim-vinegar'
 Plugin 'kana/vim-textobj-user'
 Plugin 'nelstrom/vim-textobj-rubyblock'
 Plugin 'vim-scripts/vim-auto-save'
-
+Plugin 'nathanaelkane/vim-indent-guides'
 " html tags highliting"
 Plugin 'gregsexton/MatchTag'
+Plugin 'kylef/apiblueprint.vim'
+
+"ruby refactoring
+Plugin 'ecomba/vim-ruby-refactoring'
+"Plugin 'ztmhedberg/matchit'
 
 " JavaScript and JSX highlining
 Plugin 'pangloss/vim-javascript'

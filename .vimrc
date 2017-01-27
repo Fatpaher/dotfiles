@@ -26,11 +26,11 @@ set undodir=$HOME/.VIM_UNDO_FILES
 set undolevels=5000
 
 "--------------------- Fold lines according to the file's syntax--------------
-set foldmethod=syntax
+"set foldmethod=syntax
 
 " Make folds auto-open and auto-close when the cursor moves over them
-:set foldopen=all
-:set foldclose=all
+":set foldopen=all
+":set foldclose=all
 
 " -------------------Make it obvious where 80 characters is--------------------
 "set textwidth=80
@@ -38,7 +38,7 @@ set foldmethod=syntax
 
 " Highlight anything in the 81st column or later
 
-highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+highlight OverLength ctermbg=darkgrey ctermfg=white guibg=#592929
 match OverLength /\%81v.\+/
 
 "---------------------------------NERDTree Configuration-------------------------
@@ -118,6 +118,11 @@ set hlsearch
 set incsearch
 set ignorecase
 set smartcase
+"-----------------------------RussianKeyboard----------------------------------
+set keymap=russian-jcukenwin
+set iminsert=0
+set imsearch=0
+highlight lCursor guifg=NONE guibg=Cyan
 
 " ---------------------------Mappings------------------------------------------
 " Tabs navigation shortcuts
@@ -192,7 +197,7 @@ nmap <Leader><LEFT><LEFT>    :cpfile<CR><C-G>
 " inspect with rubocop
 nmap <Leader>rc  :!rubocop %<CR>
 " autofix with rubocop
-nmap <Leader>ra :!rubocop -a %<CR>
+nmap <Leader>rf :!rubocop -a %<CR>
 
 " Tab navigation like Firefox---.
 nnoremap <tab>   :tabnext<CR>
@@ -200,6 +205,16 @@ nnoremap <tab>   :tabnext<CR>
 " set paste on/off
 nmap <Leader>cp :set paste<CR>
 nmap <Leader>cP :set nopaste<CR>
+" Ruby Refactoring Tool for Vim
+:nnoremap <leader>rap  :RAddParameter<cr>
+:nnoremap <leader>rcpc :RConvertPostConditional<cr>
+:nnoremap <leader>rel  :RExtractLet<cr>
+:vnoremap <leader>rec  :RExtractConstant<cr>
+:vnoremap <leader>relv :RExtractLocalVariable<cr>
+:nnoremap <leader>rit  :RInlineTemp<cr>
+:vnoremap <leader>rrlv :RRenameLocalVariable<cr>
+:vnoremap <leader>rriv :RRenameInstanceVariable<cr>
+:vnoremap <leader>rem  :RExtractMethod<cr>
 "-------------------------------Layout------------------------------------------
 
 "----------------------------Thoughbot-----------------------------------------
@@ -302,10 +317,10 @@ set wildmode=list:longest,list:full
 nnoremap <leader><leader> <c-^>
 
 " Get off my lawn
-nnoremap <Left> :echoe "Use h"<CR>
-nnoremap <Right> :echoe "Use l"<CR>
-nnoremap <Up> :echoe "Use k"<CR>
-nnoremap <Down> :echoe "Use j"<CR>
+"nnoremap <Left> :echoe "Use h"<CR>
+"nnoremap <Right> :echoe "Use l"<CR>
+"nnoremap <Up> :echoe "Use k"<CR>
+"nnoremap <Down> :echoe "Use j"<CR>
 
 " Run commands that require an interactive shell
 nnoremap <Leader>r :RunInInteractiveShell<space>
