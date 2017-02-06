@@ -41,6 +41,10 @@ Plugin 'gosukiwi/vim-atom-dark'
 Plugin 'albertocg/contrastneed-theme'
 " Coments
 Plugin 'tpope/vim-commentary'
+"Search
+Plugin 'mileszs/ack.vim'
+"Rubocop linter
+Plugin 'ngmy/vim-rubocop'
 
 call vundle#end()
 filetype plugin indent on

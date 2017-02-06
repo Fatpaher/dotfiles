@@ -1,5 +1,6 @@
 syntax on
 
+"-------------------------Vizuals----------------------------------------------
 set relativenumber
 set number
 set laststatus=2
@@ -17,6 +18,7 @@ so ~/dotfiles/plugins.vim
 
 set t_Co=256
 colorschem darcula
+
 "------------- Set up persistent undo (with all undo files in one directory)---
 if has('persistent_undo')
   set undofile
@@ -33,8 +35,8 @@ set undolevels=5000
 ":set foldclose=all
 
 " -------------------Make it obvious where 80 characters is--------------------
-"set textwidth=80
-"set colorcolumn=+1
+set textwidth=80
+set colorcolumn=+1
 
 " Highlight anything in the 81st column or later
 
@@ -74,6 +76,16 @@ function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
   call NERDTreeHighlightFile('php', 'Magenta', 'none', '#ff00ff', '#151515')
   call NERDTreeHighlightFile('rb', 'Red', 'none', '#ffa500', '#151515')
 "-------------------------------------------------------------------------------
+
+"------------------------CtrlPsettings--------------------------------------
+if exists("g:ctrlp_user_command")
+  unlet g:ctrlp_user_command
+endif
+set wildignore+=*/vendor/*,*/tmp/*,*.so,*.swp,*.zip,*/migrate/*,*/.git/*
+"Ignore files in .gitignore
+let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
+"match window config
+let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:30,results:30'
 
 "-----------------------Syntactic settings--------------------------------------
 set statusline+=%#warningmsg#
@@ -142,16 +154,23 @@ nnoremap gb :Gblame<CR>
 nnoremap ge :Gbrowse<CR>
 nnoremap gw :Gwrite<CR>
 
-" vim-test mappings
-map <Leader>t :call RunCurrentSpecFile()<CR>
-map <Leader>s :call RunNearestSpec()<CR>
-map <Leader>l :call RunLastSpec()<CR>
-map <Leader>a :call RunAllSpecs()<CR>
+" vim-test mappings/rspec
+map <Leader>st :call RunCurrentSpecFile()<CR>
+map <Leader>ss :call RunNearestSpec()<CR>
+map <Leader>sl :call RunLastSpec()<CR>
+map <Leader>sa :call RunAllSpecs()<CR>
 
+"---------------------.vimrc Configuration---------------------
 " open .vimrc file
 nmap <Leader>cv :tabedit $MYVIMRC<CR>
+" open plugins.vim file
+nmap <Leader>cp :tabedit ~/dotfiles/plugins.vim<CR>
 " source .vimrc file
 nmap <Leader>cs :source ~/.vimrc<CR>
+
+
+"Generate ctags for rails project
+nmap <Leader>ct :!ctags -R --languages=ruby --exclude=.git --exclude=log.$(bundle list --paths)<CR>
 
 "open ruby snippets
 nmap <Leader>sr :tabedit ~/.vim/bundle/vim-snippets/snippets/ruby.snippets<CR>
@@ -163,7 +182,7 @@ nmap <Leader>/ :nohlsearch<CR>
 " uses expression to extract path from current file's path
 map <Leader>fe :e <C-R>=escape(expand("%:p:h"),' ') . '/'<CR>
 map <Leader>fs :split <C-R>=escape(expand("%:p:h"), ' ') . '/'<CR>
-map <Leader>fv :vnew <C-R>=escape(expand("%:p:h"), ' ') . '/'<CR>
+map <Leader>fv :vsplit <C-R>=escape(expand("%:p:h"), ' ') . '/'<CR>
 
 "Remove all trailing whitespace by pressing F5
 nnoremap <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
@@ -194,17 +213,20 @@ nmap <Leader><RIGHT><RIGHT>  :cnfile<CR><C-G>
 nmap <Leader><LEFT>          :cprev<CR>
 nmap <Leader><LEFT><LEFT>    :cpfile<CR><C-G>
 
-" inspect with rubocop
-nmap <Leader>rc  :!rubocop %<CR>
+" ------------------------Rubocop vim-------------------------------------------
+let g:vimrubocop_keymap = 0
+nmap <Leader>rc  :RuboCop <CR>
 " autofix with rubocop
-nmap <Leader>rf :!rubocop -a %<CR>
+nmap <Leader>rf :RuboCop -a <CR>
+let g:vimrubocop_config = '~/.rubocop.yml'
 
 " Tab navigation like Firefox---.
-nnoremap <tab>   :tabnext<CR>
+nnoremap <Tab>   :tabnext<CR>
 
 " set paste on/off
 nmap <Leader>cp :set paste<CR>
 nmap <Leader>cP :set nopaste<CR>
+
 " Ruby Refactoring Tool for Vim
 :nnoremap <leader>rap  :RAddParameter<cr>
 :nnoremap <leader>rcpc :RConvertPostConditional<cr>
@@ -215,6 +237,9 @@ nmap <Leader>cP :set nopaste<CR>
 :vnoremap <leader>rrlv :RRenameLocalVariable<cr>
 :vnoremap <leader>rriv :RRenameInstanceVariable<cr>
 :vnoremap <leader>rem  :RExtractMethod<cr>
+
+"------------------ CtrlP mappings ----------------
+nmap <leader>r :CtrlPMRUFiles<cr>
 "-------------------------------Layout------------------------------------------
 
 "----------------------------Thoughbot-----------------------------------------
@@ -323,7 +348,7 @@ nnoremap <leader><leader> <c-^>
 "nnoremap <Down> :echoe "Use j"<CR>
 
 " Run commands that require an interactive shell
-nnoremap <Leader>r :RunInInteractiveShell<space>
+nnoremap <Leader>cr :RunInInteractiveShell<space>
 
 " Treat <li> and <p> tags like the block tags they are
 let g:html_indent_tags = 'li\|p'

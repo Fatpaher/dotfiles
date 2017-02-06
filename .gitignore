@@ -15,4 +15,4 @@
 *.swp
 rerun.txt
 config/cloudinary.yml
-
+config/database.yml
