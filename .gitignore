@@ -16,3 +16,6 @@
 rerun.txt
 config/cloudinary.yml
 config/database.yml
+.idea/
+dump.rdb
+.DS_Store
