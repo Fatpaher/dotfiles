@@ -19,6 +19,9 @@ so ~/dotfiles/plugins.vim
 set t_Co=256
 colorschem darcula
 
+set complete=w,.,b,u
+let g:SuperTabDefaultCompletionType = "<c-n>"
+
 "------------- Set up persistent undo (with all undo files in one directory)---
 if has('persistent_undo')
   set undofile
@@ -77,6 +80,10 @@ function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
   call NERDTreeHighlightFile('rb', 'Red', 'none', '#ffa500', '#151515')
 "-------------------------------------------------------------------------------
 
+"--------------------------Slim linter------------------------------------------
+syntax enable
+filetype plugin indent on
+autocmd BufNewFile,BufRead *.slim setlocal filetype=slim
 "------------------------CtrlPsettings--------------------------------------
 if exists("g:ctrlp_user_command")
   unlet g:ctrlp_user_command
@@ -157,7 +164,7 @@ nnoremap gw :Gwrite<CR>
 " vim-test mappings/rspec
 map <Leader>st :call RunCurrentSpecFile()<CR>
 map <Leader>ss :call RunNearestSpec()<CR>
-map <Leader>sl :call RunLastSpec()<CR>
+map <Leader>l :call RunLastSpec()<CR>
 map <Leader>sa :call RunAllSpecs()<CR>
 
 "---------------------.vimrc Configuration---------------------

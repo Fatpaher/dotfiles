@@ -27,6 +27,11 @@ Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'gregsexton/MatchTag'
 Plugin 'kylef/apiblueprint.vim'
 
+"slim linter
+"Plugin 'lim-template/vim-slim'
+
+Plugin 'vim-ruby/vim-ruby'
+
 "ruby refactoring
 Plugin 'ecomba/vim-ruby-refactoring'
 "Plugin 'ztmhedberg/matchit'
@@ -45,6 +50,9 @@ Plugin 'tpope/vim-commentary'
 Plugin 'mileszs/ack.vim'
 "Rubocop linter
 Plugin 'ngmy/vim-rubocop'
+
+"super tab
+Plugin 'ervandew/supertab'
 
 call vundle#end()
 filetype plugin indent on
