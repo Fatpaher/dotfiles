@@ -133,3 +133,6 @@ GIT_PROMPT_THEME_NAME='Single_line_Minimalist'
 export NVM_DIR="/home/fatpaher/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 source $HOME/.rvm/scripts/rvm
+
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
