@@ -44,6 +44,7 @@ Plugin 'mxw/vim-jsx'
 Plugin 'flazz/vim-colorschemes'
 Plugin 'gosukiwi/vim-atom-dark'
 Plugin 'albertocg/contrastneed-theme'
+Plugin 'dracula/vim'
 " Coments
 Plugin 'tpope/vim-commentary'
 "Search

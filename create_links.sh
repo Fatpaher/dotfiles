@@ -6,6 +6,5 @@ ln -si ~/dotfiles/.gitconfig ~/.gitconfig
 ln -si ~/dotfiles/.gitignore ~/.gitignore
 ln -si ~/dotfiles/.irbrc ~/.irbrc
 ln -si ~/dotfiles/.rspec ~/.rspec
-ln -si ~/dotfiles/.rspec ~/.rspec
 ln -si ~/dotfiles/.rubocop.yml ~/.rubocop.yml
 ln -si ~/dotfiles/.vimrc ~/.vimrc

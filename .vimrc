@@ -13,6 +13,11 @@ set tags=./tags;
 " Display extra whitespace
 set list listchars=tab:»·,trail:·,nbsp:·
 
+" To install plugins
+" git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+" Launch vim and run :PluginInstall
+" To install from command line: vim +PluginInstall +qall
+
 "source the plugin file
 so ~/dotfiles/plugins.vim
 
