@@ -1,7 +1,7 @@
 syntax on
 
 "-------------------------Vizuals----------------------------------------------
-set relativenumber
+"set relativenumber
 set number
 set laststatus=2
 
