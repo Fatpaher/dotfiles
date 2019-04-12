@@ -55,6 +55,11 @@ Plugin 'ngmy/vim-rubocop'
 "super tab
 Plugin 'ervandew/supertab'
 
+"Create path to test files
+Plugin 'compactcode/alternate.vim'
+" open test files
+Plugin 'compactcode/open.vim'
+
 call vundle#end()
 filetype plugin indent on
 filetype plugin on

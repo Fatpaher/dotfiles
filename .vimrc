@@ -172,6 +172,9 @@ map <Leader>ss :call RunNearestSpec()<CR>
 map <Leader>l :call RunLastSpec()<CR>
 map <Leader>sa :call RunAllSpecs()<CR>
 
+" switch to test file
+map <Leader>sf :Open(alternate#FindTest())<CR>
+
 "---------------------.vimrc Configuration---------------------
 " open .vimrc file
 nmap <Leader>cv :tabedit $MYVIMRC<CR>
