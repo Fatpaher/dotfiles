@@ -178,10 +178,13 @@ map <Leader>sf :Open(alternate#FindTest())<CR>
 "---------------------.vimrc Configuration---------------------
 " open .vimrc file
 nmap <Leader>cv :tabedit $MYVIMRC<CR>
+command! Vimrc :tabedit $MYVIMRC
 " open plugins.vim file
 nmap <Leader>cp :tabedit ~/dotfiles/plugins.vim<CR>
+command! Vimplugin :tabedit ~/dotfiles/plugins.vim
 " source .vimrc file
 nmap <Leader>cs :source ~/.vimrc<CR>
+command! Vimsource :source ~/.vimrc
 
 
 "Generate ctags for rails project
