@@ -19,3 +19,5 @@ config/database.yml
 .idea/
 dump.rdb
 .DS_Store
+.rakeTasks
+.generators

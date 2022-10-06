@@ -6,3 +6,7 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 
+alias cb='pbcopy'
+
+alias cn_db_rebuild='git checkout develop db/structure.sql; rails db:drop db:create db:structure:load db:migrate'
+

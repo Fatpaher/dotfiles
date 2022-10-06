@@ -1,14 +1,14 @@
 [color]
   ui = true
 [user]
-  name = Paul Pavlovsky
+	name = Pavlo Pavlovsky
   email = fatpaher@gmail.com
 [alias]
   ch = checkout
   ci = commit
   st = status
   br = branch
-  hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+  hist = log --all --decorate --oneline --graph
   type = cat-file -t
   dump = cat-file -p
   cleanup = "!git branch --merged | grep  -v '\\*\\|master\\|develop' | xargs -n 1 git branch -d"
@@ -19,3 +19,7 @@
   excludesfile = ~/.gitignore
 [push]
   default = simple
+[pull]
+	ff = only
+[credential]
+	helper = cache
